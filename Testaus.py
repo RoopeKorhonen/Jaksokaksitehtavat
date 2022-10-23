@@ -1,1 +1,2 @@
-print("toimii") .
+print("toimii")
+print("vittutoimiiko")
