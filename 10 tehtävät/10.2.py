@@ -60,13 +60,8 @@ class House:
         elevator.go_to_floor(elevator_floor)
 
 
-
-
-
-
 if __name__ == '__main__':
     house = House(1, 6, 3)
     house.print_info()
-
     house.run_elevator(2, 3)
     house.print_info()
