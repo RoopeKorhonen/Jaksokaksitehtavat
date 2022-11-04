@@ -35,10 +35,10 @@ def get_longitude(place):
     longitude = string_to_float(cut_string)
     return longitude
 def get_the_weather(lat, lon):
-    get_places_weather = (f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_key}")
+    get_places_weather = (f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_key}&units=metric")
     weather = requests.get(get_places_weather).json()
     degrees = weather["main"]["temp"]
-    celcius = -272.15 / degrees
+    celcius = degrees
     return round(celcius, 2)
 city = input("Give city")
 API_key = ("14112fd30bc018d0c6c3c1a190ffbb3f")
