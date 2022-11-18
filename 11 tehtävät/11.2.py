@@ -54,6 +54,7 @@ class Race:
 autot = []
 autot.append(Sähköauto("198-KLO", 190, 52.5))
 autot.append(Polttomoottoriauto("944-BCE", 200, 32.3))
+autot.append(Sähköauto("192-dsad",190, 32.3))
 for t in autot:
     t.print_info()
 
