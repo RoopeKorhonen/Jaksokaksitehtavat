@@ -12,12 +12,15 @@ app = Flask(__name__)
 def Kenttä(koodi):
     try:
         koodikysymys = float(koodi)
+        f'select name, municipality from airport where ident = {koodikysymys}'
         tilakoodi = 200
         vastaus = {
             "ICAO": koodikysymys,
             "Name": Lentokenttä,
             "Municipality": Kaupunki
         }
+
+
 
     except ValueError:
         tilakoodi = 400
