@@ -1,21 +1,33 @@
 from flask import Flask, Response
 import json
-import mysql
+import mysql.connector
 
+connection = mysql.connector.connect(
+         host='127.0.0.1',
+         port= 3306,
+         database='flight_game',
+         user='root',
+         password="moodleroope",
+         autocommit=True
+         )
 # Toteuta taustapalvelu, joka palauttaa annettua lentokentän ICAO-koodia vastaavan lentokentän nimen ja kaupungin JSON-muodossa.
 # Tiedot haetaan opintojaksolla käytetystä lentokenttätietokannasta.
 # Esimerkiksi EFHK-koodia vastaava GET-pyyntö annetaan muodossa: http://127.0.0.1:3000/kenttä/EFHK.
 # Vastauksen on oltava muodossa: {"ICAO":"EFHK", "Name":"Helsinki Vantaa Airport", "Municipality":"Helsinki"}.
 
 app = Flask(__name__)
-@app.route('/Kenttä/<Koodi>')
-def Kenttä(koodi):
+@app.route('/kenttä/<Koodi>')
+def kenttä(Koodi):
     try:
-        koodikysymys = float(koodi)
-        f'select name, municipality from airport where ident = {koodikysymys}'
+        sql = "select name, municipality from airport where ident = '" + Koodi +"' "
+        cursor = connection.cursor()
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        Lentokenttä = (result[0][0])
+        Kaupunki = (result[0][1])
         tilakoodi = 200
         vastaus = {
-            "ICAO": koodikysymys,
+            "ICAO": Koodi,
             "Name": Lentokenttä,
             "Municipality": Kaupunki
         }
