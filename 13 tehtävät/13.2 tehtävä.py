@@ -23,6 +23,7 @@ def kenttä(Koodi):
         cursor = connection.cursor()
         cursor.execute(sql)
         result = cursor.fetchall()
+        Lentokenttä = (result[0][0])
         Kaupunki = (result[0][1])
         tilakoodi = 200
         vastaus = {
